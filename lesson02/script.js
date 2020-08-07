@@ -1,4 +1,4 @@
-//declare variables
+ //declare variables
 let money = 50000, 
     income = 20000, 
     addExpenses ='Коммуналка, Интернет, Продукты', 
