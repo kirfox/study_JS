@@ -1,10 +1,11 @@
 'use strict'
 
  //declare variables
-let money = 50000, 
+let money = prompt('Ваш месячный доход?', '50000'),
     income = 20000, 
-    addExpenses ='Коммуналка, Интернет, Продукты', 
-    deposit = false, 
+    addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую?',
+    'Коммуналка, Интернет, Продукты'),
+    deposit = confirm('Есть ли у вас депозит в банке?'),
     mission = 1000000, 
     period = 6,
     budgetDay = money/30,
@@ -25,10 +26,6 @@ let money = 50000,
     console.log(budgetDay);
 
 //use prompt
-    money = prompt('Ваш месячный доход?', '50000');
-    addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую?', 
-    'Коммуналка, Интернет, Продукты');
-    deposit = prompt('Есть ли у вас депозит в банке?', 'true');
     expenses1 = prompt('Введите обязательную статью расходов?', 'Дети');
     expenses2 = prompt('Введите обязательную статью расходов?', 'Пиво');
     amount1 = prompt('Во сколько это обойдется?', '5000');
