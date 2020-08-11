@@ -9,17 +9,11 @@ let money = +prompt('Ваш месячный доход?', '50000'),
     mission = 1000000, 
     period = 6,
     budgetDay,
-    expenses1,
-    expenses2,
-    amount1,
-    amount2,
+    expenses1 = prompt('Введите обязательную статью расходов?', 'Дети'),
+    expenses2 = prompt('Введите обязательную статью расходов?', 'Пиво'),
+    amount1 = +prompt('Во сколько это обойдется?', '5000'),
+    amount2 = +prompt('Во сколько это обойдется?', '5000'),
     accumulatedMonth;
-
-//use prompt
-    expenses1 = prompt('Введите обязательную статью расходов?', 'Дети');
-    expenses2 = prompt('Введите обязательную статью расходов?', 'Пиво');
-    amount1 = +prompt('Во сколько это обойдется?', '5000');
-    amount2 = +prompt('Во сколько это обойдется?', '5000');
     
 //show type variables    
 let showTypeOf = function(data) {
