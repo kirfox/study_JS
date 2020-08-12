@@ -48,11 +48,15 @@ let money,
         
         let sum = 0;
 
-        for (let i = 0; i < 2 && isNumber(sum); i++) {
+        for (let i = 0; i < 2; i++) {
             
             expenses[i] = prompt('Введите обязательную статью расходов?', 'Дети');
+
+            while (isNumber(sum)){
+                sum += +prompt('Во сколько это обойдется?', '5000');
+                break;
+            }
             
-            sum += +prompt('Во сколько это обойдется?', '5000');
             
         }
         console.log(expenses);
