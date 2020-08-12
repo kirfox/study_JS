@@ -45,22 +45,21 @@ let money,
     let expenses = []; 
 
     let getExpensesMonth = function(){
-        
         let sum = 0;
-
+        let result = 0;
+        
         for (let i = 0; i < 2; i++) {
             
             expenses[i] = prompt('Введите обязательную статью расходов?', 'Дети');
 
-            while (isNumber(sum)){
-                sum += +prompt('Во сколько это обойдется?', '5000');
-                break;
-            }
-            
-            
+            do{
+                sum = prompt('Во сколько это обойдется?' );
+                if (isNumber(sum)) {
+                    result += +sum;
+                }
+            } while (!isNumber(sum));
         }
-        console.log(expenses);
-        return sum;
+        return result;
     };
     let expensesMonth = getExpensesMonth();
 
