@@ -42,26 +42,27 @@ let appData = {
             while (isNumber(itemIncome));
 
             do{
-               cashIncome = +prompt('Сколько в месяц вы на этом зарабатываете?', 10000);
+               cashIncome = prompt('Сколько в месяц вы на этом зарабатываете?', 10000);
             }
-            while (!isNumber(cashIncome));
+            while (!isNumber(cashIncome) || cashIncome === '');
             
             appData.income[itemIncome] = cashIncome;
         } 
 
 
         let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую?',
-                                'Коммуналка,Интернет,Продукты');
+                                'коммуналка,интернет,Продукты');
 
-            appData.addExpenses = addExpenses.toLowerCase().split(', ');
+            // appData.addExpenses = addExpenses.toLowerCase().split(', ');
 
             //addExpenses first simbol replaced on the capital letter
-            appData.addExpenses = addExpenses.split(', ').map(function(word){
+            appData.addExpenses = addExpenses.split(',').map(function(word){
+                word = word.trim();
                 return word.charAt(0).toUpperCase() + word.slice(1);
             });
 
             //output in console addExpenses as a string with commas and spaces
-            console.log(appData.addExpenses = addExpenses.replace(/,(?=[^\s])/g, ", "));
+            console.log(appData.addExpenses.join(", "));
 
             appData.deposit = confirm('Есть ли у вас депозит в банке?');
 
@@ -130,13 +131,13 @@ let appData = {
     getInfoDeposit: function(){
         if (appData.deposit) {
             do{
-                appData.percentDeposit = +prompt('Какой годовой процент?', 10);
+                appData.percentDeposit = prompt('Какой годовой процент?', 10);
             }
-            while (!isNumber(appData.percentDeposit));
+            while (!isNumber(appData.percentDeposit) ||  appData.percentDeposit === '');
             do{
-                appData.moneyDeposit = +prompt('Какая сумма заложена?', 10000);
+                appData.moneyDeposit = prompt('Какая сумма заложена?', 10000);
             }
-            while (!isNumber(appData.moneyDeposit));
+            while (!isNumber(appData.moneyDeposit) || appData.moneyDeposit === '');
         }
     },
     calcSavedMoney: function(){
