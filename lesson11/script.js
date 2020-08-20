@@ -204,15 +204,15 @@ salaryAmount.addEventListener('input', function () {
         start.disabled = true;
     } else{
         start.disabled = false;
-
         start.addEventListener('click', appData.start);
-        incomePlus.addEventListener('click', appData.addIncomeBlock);
-        expensesPlus.addEventListener('click', appData.addExpensesBlock);
-
-        periodSelect.addEventListener('input', function () {
-            periodAmount.textContent = periodSelect.value;
-        });
     }
+});
+
+incomePlus.addEventListener('click', appData.addIncomeBlock);
+expensesPlus.addEventListener('click', appData.addExpensesBlock);
+
+periodSelect.addEventListener('input', function () {
+    periodAmount.textContent = periodSelect.value;
 });
 
 // if (appData.getTargetMonth() > 0) {
