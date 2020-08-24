@@ -82,7 +82,7 @@ let appData = {
         incomePeriodValue.value = this.calcPeriod();
         
         periodSelect.addEventListener('input', function () {
-            incomePeriodValue.value = appData.calcPeriod();  //-------------------------------------------------
+            incomePeriodValue.value = appData.calcPeriod();
          });
 
       console.log(appData);
