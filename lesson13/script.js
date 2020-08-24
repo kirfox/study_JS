@@ -310,5 +310,3 @@ expensesPlus.addEventListener('click', appData.addExpensesBlock);
 periodSelect.addEventListener('input', function () {
     periodAmount.textContent = periodSelect.value;
 });
-
-
