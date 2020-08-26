@@ -76,7 +76,7 @@ class AppData  {
 
     //output on screen
     showResult(){
-        const _this = this;  
+         
         budgetMonthValue.value = this.budgetMonth;
         budgetDayValue.value = this.budgetDay;
         expensesMonthValue.value = this.expensesMonth;
@@ -85,8 +85,8 @@ class AppData  {
         targetMonthValue.value = Math.ceil(this.getTargetMonth());
         incomePeriodValue.value = this.calcPeriod();
         
-        periodSelect.addEventListener('input', function () {
-            incomePeriodValue.value = _this.calcPeriod();
+        periodSelect.addEventListener('input', () =>{
+            incomePeriodValue.value = this.calcPeriod();
         });
     }
 
@@ -98,13 +98,13 @@ class AppData  {
         additionalIncomeItem[1].disabled = isDisabled;
         
         incomeItem.forEach(function(item) {
-            item.querySelectorAll('input').forEach(function(input){
+            item.querySelectorAll('input').forEach((input) =>{
                 input.disabled = isDisabled;
             });
         });
 
         expensesItems.forEach(function(item) {
-            item.querySelectorAll('input').forEach(function(input){
+            item.querySelectorAll('input').forEach((input) =>{
                 input.disabled = isDisabled;
             });
         });
@@ -293,7 +293,7 @@ class AppData  {
 
     eventListeners() {
         // checking for symbols
-        salaryAmount.addEventListener('input', function () {
+        salaryAmount.addEventListener('input',  () => {
             if (salaryAmount.value === '') {
                 start.disabled = true;
             } else{
@@ -310,7 +310,7 @@ class AppData  {
         incomePlus.addEventListener('click', this.addIncomeBlock);  
         expensesPlus.addEventListener('click', this.addExpensesBlock);  
 
-        periodSelect.addEventListener('input', function () {
+        periodSelect.addEventListener('input', () => {
             periodAmount.textContent = periodSelect.value;
         });
 
