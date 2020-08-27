@@ -325,7 +325,7 @@ class AppData  {
         // checking for symbols
         depositPercent.addEventListener('input',  () => {
             depositPercent.value = depositPercent.value.replace(/\D/,'');
-            if (depositPercent.value < 0 || depositPercent.value > 100) {
+            if (depositPercent.value < 1 || depositPercent.value > 100) {
                 start.disabled = true;
                 alert ("Введите корректное значение в поле проценты");
             } else{
