@@ -54,40 +54,20 @@ window.addEventListener('DOMContentLoaded', function(){
     const toggleMenu = () =>{
 
         const btnMenu = document.querySelector('.menu'),
-            menu = document.querySelector('menu'),
-            closeBtn = document.querySelector('.close-btn'),
-            menuItems = menu.querySelectorAll('ul>li');
-
-
-        btnMenu.addEventListener('click', (event) =>{
-            menu.classList.add('active-menu');  
+            menu = document.querySelector('menu');
             
+        btnMenu.addEventListener('click', () =>{
+            menu.classList.toggle('active-menu');         
+        });
+
+        menu.addEventListener('click', ()=>{
             let target = event.target;
 
-            target = target.closest('ul>li');
-            console.log(target);
-
-            // if (target) {
-            //     menuItems.forEach((item, i) =>{
-            //         if (item === target) {
-            //             console.log(menuItems[i]);
-            //         }
-            //     });
-            // }
-
-           
-        });
-       
-        // const handlerMenu = () =>{
-        //     menu.classList.toggle('active-menu');   
-        // };
-        // btnMenu.addEventListener('click', handlerMenu);
-        // closeBtn.addEventListener('click', handlerMenu);
-
-        // menuItems.forEach((elem) => elem.addEventListener('click', ()=> {
-        //     console.log(event.target);
-        // }));
-        
+            if (target.classList.contains('close-btn') || target !== menu) {
+                target = target.closest('.close-btn');
+                menu.classList.toggle('active-menu');
+            }
+        });     
     };
 
     toggleMenu();
