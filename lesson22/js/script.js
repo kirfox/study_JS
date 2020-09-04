@@ -1,12 +1,12 @@
 'use strict';
 
 class Todo {
-    constructor(form, input, todoList, todoCompleted, todoRemove) {
+    constructor(form, input, todoList, todoCompleted, todoContainer) {
         this.form  = document.querySelector(form);
         this.input  = document.querySelector(input);
         this.todoList  = document.querySelector(todoList);
         this.todoCompleted  = document.querySelector(todoCompleted);
-        this.todoRemove  = document.querySelectorAll(todoRemove);
+        this.todoContainer = document.querySelector(todoContainer);
         this.todoData = new Map(JSON.parse(localStorage.getItem('toDoList')));
      
     }
@@ -45,14 +45,19 @@ class Todo {
 
     addTodo(e){
         e.preventDefault();
-        if (this.input.value.trim()) {
+        if (this.input.value.trim()&& this.input.value !== '') {
+            this.input.placeholder = 'Какие планы?';
             const newTodo = {
                 value: this.input.value,
                 completed: false,
                 key: this.generateKey(),
             };
             this.todoData.set(newTodo.key, newTodo);
+            this.input.value = '';
             this.render();
+            
+        }else{
+            this.input.placeholder = 'Ну скажи какие планы????';
         }
        
     }
@@ -61,44 +66,39 @@ class Todo {
         return Math.random().toString(36).substring(2,15) + Math.random().toString(36).substring(2,15);
     }
 
-    deleteItem(){
-        console.log(event.target);
-        
-        
+    deleteItem(target){ 
+        const key = target.closest('.todo-item').key;
+        this.todoData.delete(key);
+        this.render();
     }
 
-    completedItem(){
-        console.log(2);
+    completedItem(target){
+        const key = target.closest('.todo-item').key;
+        const findKey = this.todoData.get(key);
+        
+        findKey.completed = !findKey.completed;
+
+        this.render();
     }
 
-    handler(){
-      
-        this.todoList.addEventListener('click', () =>{
-            let target = event.target;
-             
-            if (target.closest('.todo-item')) {
-                this.deleteItem();
+    handler(e){
+            let target = e.target;
+            if (target.closest('.todo-remove')) {
+                this.deleteItem(target);
             } 
             if (target.classList.contains('todo-complete')) {
-                this.completedItem();
+                this.completedItem(target);
             } 
-            
-        });
-      
-    
     }
 
     init() {
         this.form.addEventListener('submit', this.addTodo.bind(this));
-        
+        this.todoContainer.addEventListener('click', this.handler.bind(this));
         this.render();
 
-        this.handler();
-        
-       
     }
 }
 
-const todo = new Todo('.todo-control', '.header-input', '.todo-list', '.todo-completed', '.todo-remove');
+const todo = new Todo('.todo-control', '.header-input', '.todo-list', '.todo-completed', '.todo-container');
 
 todo.init();
