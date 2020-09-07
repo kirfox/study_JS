@@ -259,7 +259,7 @@ window.addEventListener('DOMContentLoaded', function(){
             }
 
             prevSlide(slide, currentSlide, 'portfolio-item-active');
-            prevSlide(dot, currentSlide, 'dot-active'); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            prevSlide(dot, currentSlide, 'dot-active'); 
 
             if (target.matches('#arrow-right')){
                 currentSlide++;
@@ -280,7 +280,7 @@ window.addEventListener('DOMContentLoaded', function(){
                 currentSlide = slide.length - 1;
             }
             nextSlide(slide, currentSlide, 'portfolio-item-active');
-            nextSlide(dot, currentSlide, 'dot-active'); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            nextSlide(dot, currentSlide, 'dot-active'); 
 
         });
 
@@ -303,4 +303,46 @@ window.addEventListener('DOMContentLoaded', function(){
     };
 
     slider();
+
+    //input only number in calculator's inputs 
+    const inpNumberCalc = () =>{
+        const calcBlock = document.querySelector('.calc-block');
+
+        calcBlock.addEventListener('input', (e) =>{
+            let target = e.target;
+            if (target.closest('.calc-square') || target.closest('.calc-count') || target.closest('.calc-day') ) {
+                target.value = target.value.replace(/\D/g, '');
+            }
+        });
+    };
+
+    inpNumberCalc();
+
+    //photos changes when mouse hover over them
+    const team = () => {
+
+        const command = document.getElementById('command'),
+        row = command.querySelector('.row');
+
+        row.addEventListener('mouseover', (event)=>{
+            let target = event.target;
+
+            if(target.closest('.command__photo')){
+                target.src = target.dataset.img;
+            }
+        });
+
+        row.addEventListener('mouseout', (event) => {
+            let target = event.target;
+            if(target.closest('.command__photo')){
+                target.src = target.src.substring(0,  target.src.length-5);
+                target.src += '.jpg';
+            }
+        });
+    };
+
+    team();
+
+    
+
 });
