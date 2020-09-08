@@ -384,7 +384,7 @@ window.addEventListener('DOMContentLoaded', function(){
                 };
                 animation();
             }
-            animateNumbers(total, totalValue.id, 1, 200); 
+            animateNumbers(total, totalValue.id, 1, 10); 
         };
 
         calcBlock.addEventListener('change', (event) => {
