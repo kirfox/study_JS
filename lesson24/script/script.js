@@ -371,11 +371,20 @@ window.addEventListener('DOMContentLoaded', function(){
 
             if (typeValue && squareValue) {
                 total = price * typeValue * squareValue * countValue * dayValue;
-            } else {
-                total = 0;
             }
 
-            totalValue.textContent = total;
+            function animateNumbers(val, el, timeout, step){
+                let i = 0;
+                const animation = function(){
+                    if ( i <= val ){
+                        setTimeout(animation, timeout);
+                        document.getElementById(el).textContent = i;
+                        i += step;
+                    } 
+                };
+                animation();
+            }
+            animateNumbers(total, totalValue.id, 1, 200); 
         };
 
         calcBlock.addEventListener('change', (event) => {
