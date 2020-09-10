@@ -231,13 +231,13 @@ window.addEventListener('DOMContentLoaded', function(){
         const autoPlaySlide = () => {
 
             prevSlide(slide, currentSlide, 'portfolio-item-active');
-            prevSlide(dot, currentSlide, 'dot-active'); 
+            prevSlide(dot, currentSlide, 'dot-active'); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             currentSlide++;
             if (currentSlide >= slide.length) {
                 currentSlide = 0;
             }
             nextSlide(slide, currentSlide, 'portfolio-item-active');
-            nextSlide(dot, currentSlide, 'dot-active'); 
+            nextSlide(dot, currentSlide, 'dot-active'); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         };
 
         const startSlide = (time = 2000) => {
@@ -474,14 +474,12 @@ window.addEventListener('DOMContentLoaded', function(){
             statusMessage.textContent = loadMessage;
             const formData = new FormData(form3);
             let body = {};
-            
             // for (let val of formData.entries()){
             //     body[val[0]] = val[1];
             // }
             formData.forEach((val, key) => {
                 body[key] = val;
             });
-
             postData(body, 
                 () =>{
                     statusMessage.textContent = successMessage;
@@ -498,10 +496,13 @@ window.addEventListener('DOMContentLoaded', function(){
 
         document.addEventListener('input', (event) =>{
             let target = event.target;
-            if (target === target.closest('.form-name') || target === target.closest('#form2-name') || 
-            target === target.closest('.mess')) {
+            if (target === target.closest('.form-name') || target === target.closest('#form2-name'))
+            {
                 target.value = target.value.replace(/[^а-я ]/gi, '');
             } 
+            if(target === target.closest('.mess')){
+                target.value = target.value.replace(/[^а-я0-9.,!-? ]/gi, '');
+            }
             if (target === target.closest('.form-phone')) {
                 target.value = target.value.replace(/[^\+\d]/g, '');
             }
