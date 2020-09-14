@@ -48,7 +48,7 @@ window.addEventListener('DOMContentLoaded', function(){
         let idInterval = setInterval(updateClock, 1000);
         
     }
-    countTimer('13, september, 2020');
+    countTimer('29, september, 2020');
 
     // Menu
     const toggleMenu = () =>{
@@ -422,21 +422,20 @@ window.addEventListener('DOMContentLoaded', function(){
             statusMessage.textContent = loadMessage;
             const formData = new FormData(form);
             let body = {};
-            // for (let val of formData.entries()){
-            //     body[val[0]] = val[1];
-            // }
+
             formData.forEach((val, key) => {
                 body[key] = val;
             });
-            postData(body, 
-                () =>{
+            postData(body)
+            .then(() =>{
                     statusMessage.textContent = successMessage;
-                }, 
-                (error) => {
+                })
+            .catch(((error) => {
                     statusMessage.textContent = errorMessage;
                     console.error(error);
-                });
-
+                })
+            ); 
+                
             input.forEach((item) =>{
                item.value = '';
             });
@@ -448,20 +447,19 @@ window.addEventListener('DOMContentLoaded', function(){
             statusMessage.textContent = loadMessage;
             const formData = new FormData(form2);
             let body = {};
-            // for (let val of formData.entries()){
-            //     body[val[0]] = val[1];
-            // }
+
             formData.forEach((val, key) => {
                 body[key] = val;
             });
-            postData(body, 
-                () =>{
+            postData(body)
+            .then(() =>{
                     statusMessage.textContent = successMessage;
-                }, 
-                (error) => {
+                })
+            .catch(((error) => {
                     statusMessage.textContent = errorMessage;
                     console.error(error);
-                });
+                })
+            ); 
 
             input2.forEach((item) =>{
                item.value = '';
@@ -474,20 +472,19 @@ window.addEventListener('DOMContentLoaded', function(){
             statusMessage.textContent = loadMessage;
             const formData = new FormData(form3);
             let body = {};
-            // for (let val of formData.entries()){
-            //     body[val[0]] = val[1];
-            // }
+
             formData.forEach((val, key) => {
                 body[key] = val;
             });
-            postData(body, 
-                () =>{
+            postData(body)
+            .then(() =>{
                     statusMessage.textContent = successMessage;
-                }, 
-                (error) => {
+                })
+            .catch(((error) => {
                     statusMessage.textContent = errorMessage;
                     console.error(error);
-                });
+                })
+            ); 
 
             input3.forEach((item) =>{
                item.value = '';
@@ -508,25 +505,29 @@ window.addEventListener('DOMContentLoaded', function(){
             }
         });
 
-        const postData = (body, outputData, errorData) => {
-            const request = new XMLHttpRequest();
+        const postData = (body) => {
 
-            request.addEventListener('readystatechange', () => {
-               
-                if (request.readyState !== 4) {
-                    return;
-                }
+            return new Promise((resolve, reject) => {
+                const request = new XMLHttpRequest();
 
-                if (request.status === 200) {
-                    outputData();
-                } else {
-                    errorData(request.status);
-                }
+                request.addEventListener('readystatechange', () => {
+                   
+                    if (request.readyState !== 4) {
+                        return;
+                    }
+    
+                    if (request.status === 200) {
+                        resolve();
+                    } else {
+                        reject(request.status);
+                    }
+                });
+    
+                request.open('POST', './server.php');
+                request.setRequestHeader('Content-Type', 'application/json');
+                request.send(JSON.stringify(body));
             });
-
-            request.open('POST', './server.php');
-            request.setRequestHeader('Content-Type', 'application/json');
-            request.send(JSON.stringify(body));
+            
         };
     };
     sendForm();
