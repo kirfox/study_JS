@@ -42,7 +42,7 @@ function countTimer(deadLine){
       
     }
     
-    let idInterval = setInterval(updateClock, 1000);
+    let idInterval = setInterval(updateClock);
     
 }
 

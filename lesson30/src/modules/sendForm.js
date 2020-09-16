@@ -16,6 +16,7 @@ const sendForm  = () => {
 
     form.addEventListener('submit', (event) => {
         event.preventDefault();
+        statusMessage.style.display= 'block';
         form.appendChild(statusMessage);
         statusMessage.textContent = loadMessage;
         const formData = new FormData(form);
@@ -30,10 +31,12 @@ const sendForm  = () => {
                 throw new Error('status network not 200');
             }
             statusMessage.textContent = successMessage;
+            setTimeout(() => statusMessage.style.display= 'none', 5000);
             })
         .catch(((error) => {
                 statusMessage.textContent = errorMessage;
                 console.error(error);
+                setTimeout(() => statusMessage.style.display= 'none', 5000);
             })
         ); 
             
@@ -44,6 +47,7 @@ const sendForm  = () => {
 
     form2.addEventListener('submit', (event) => {
         event.preventDefault();
+        statusMessage.style.display= 'block';
         form2.appendChild(statusMessage);
         statusMessage.textContent = loadMessage;
         const formData = new FormData(form2);
@@ -58,10 +62,12 @@ const sendForm  = () => {
                 throw new Error('status network not 200');
             }
             statusMessage.textContent = successMessage;
+            setTimeout(() => statusMessage.style.display= 'none', 5000);
             })
         .catch(((error) => {
                 statusMessage.textContent = errorMessage;
                 console.error(error);
+                setTimeout(() => statusMessage.style.display= 'none', 5000);
             })
         ); 
 
@@ -72,6 +78,7 @@ const sendForm  = () => {
 
     form3.addEventListener('submit', (event) => {
         event.preventDefault();
+        statusMessage.style.display= 'block';
         form3.appendChild(statusMessage);
         statusMessage.textContent = loadMessage;
         const formData = new FormData(form3);
@@ -86,10 +93,12 @@ const sendForm  = () => {
                 throw new Error('status network not 200');
             }
             statusMessage.textContent = successMessage;
+            setTimeout(() => statusMessage.style.display= 'none', 5000);
             })
         .catch(((error) => {
                 statusMessage.textContent = errorMessage;
                 console.error(error);
+                setTimeout(() => statusMessage.style.display= 'none', 5000);
             })
         ); 
 
