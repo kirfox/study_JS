@@ -3,6 +3,7 @@ const toggleMenu = () =>{
 
     const btnMenu = document.querySelector('.menu'),
         menu = document.querySelector('menu');
+
     btnMenu.addEventListener('click', () =>{
         menu.classList.toggle('active-menu');         
     });
